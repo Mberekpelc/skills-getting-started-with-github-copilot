@@ -74,6 +74,42 @@ activities = {
         "schedule": "Fridays, 3:30 PM - 5:00 PM",
         "max_participants": 12,
         "participants": ["elijah@mergington.edu", "lucas@mergington.edu"]
+    },
+    "Volleyball Team": {
+        "description": "Play volleyball and compete in tournaments",
+        "schedule": "Mondays and Thursdays, 4:00 PM - 5:30 PM",
+        "max_participants": 18,
+        "participants": ["grace@mergington.edu", "charlotte@mergington.edu"]
+    },
+    "Tennis Team": {
+        "description": "Train in tennis and participate in matches",
+        "schedule": "Tuesdays and Fridays, 3:30 PM - 5:00 PM",
+        "max_participants": 14,
+        "participants": ["henry@mergington.edu", "lily@mergington.edu"]
+    },
+    "Music Club": {
+        "description": "Play instruments and perform in concerts",
+        "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 20,
+        "participants": ["isabella@mergington.edu", "avery@mergington.edu"]
+    },
+    "Dance Club": {
+        "description": "Learn various dance styles and perform",
+        "schedule": "Thursdays and Saturdays, 4:00 PM - 5:30 PM",
+        "max_participants": 16,
+        "participants": ["poppy@mergington.edu", "ruby@mergington.edu"]
+    },
+    "Robotics Club": {
+        "description": "Build and program robots for competitions",
+        "schedule": "Mondays and Wednesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 15,
+        "participants": ["alexander@mergington.edu", "ethan@mergington.edu"]
+    },
+    "Debate Club": {
+        "description": "Develop argumentation skills and compete in debates",
+        "schedule": "Tuesdays and Thursdays, 4:30 PM - 5:30 PM",
+        "max_participants": 12,
+        "participants": ["mason@mergington.edu", "logan@mergington.edu"]
     }
 }
 
@@ -91,6 +127,9 @@ def get_activities():
 @app.post("/activities/{activity_name}/signup")
 def signup_for_activity(activity_name: str, email: str):
     """Sign up a student for an activity"""
+    # Normalize email to lowercase
+    email = email.lower()
+
     # Validate activity exists
     if activity_name not in activities:
         raise HTTPException(status_code=404, detail="Activity not found")
